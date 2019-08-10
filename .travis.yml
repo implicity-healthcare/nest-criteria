@@ -9,8 +9,10 @@ before_script:
 script:
   - npm test
 deploy:
+  skip_cleanup: true
   provider: npm
   email: julien.sarazin@me.com
+
   api_key:
     secure: nFAJdl6D+ecyrhhdhp7U86BOBzE3xvgEoN+2BXWxH5xRm6939baC1mmdFnIKQWn+NgTvaCAvoWxytrSTTwg4Bo1YMIwAq711dj8kS7daiGRdLf7nSplT1+WV/0c+gUPG5KcC5XhSBzzX92M/1EyvrMVHM5JyTIZDZPnReDIigg4nl7u7wvJ7Ykd5+tzCd7Jtkd/0nDYyYB49o7ES3tBJ+jD8HTAHbicNCNecCpe0vj3crg5FRJafAHX6GbtfmmF0NG39Nl2O9FsY9GZW8k//7KwJXv4XxCczeWz6AMvgMAnJag2V3Ins1n3WrzHm+wOb0fQHt6NJlXCLHGIAu3CaEQkjCRsd1+ssU1vC3E4Wa/55j19fbHI22JdjrOhWZoJyK8AJMpvklaybZcpQXKjF9sWTWwMDI8BQ2oEIyI+XYhi7KOt4n94MOaI6kPLrLGSiJtac4ACbiub4Jrl609GN2lemDGF3weXdhSoxqDNCSRgJ5prOXIO66STWBdGdu0+2u0zyuCp5Lyy1Ri3uCL5AydNMg3XTb5QSQL3rH0JcikxK3Aom6aaDLo8fXA6gG5yqb2rR7G88lv6ZaUFAx0Is9m+Pdaz0tUgwglDa9gmjkIp81/rbkmNEfcEd3bXsn558kToY3FlWGtFbbGTT5vVY9IBCURuhEP0pQXbIkKrEWV4=
   on:
