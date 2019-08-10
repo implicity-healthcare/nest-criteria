@@ -56,13 +56,13 @@ Last but not least, the **repository layer**. Here we used TypeORM but the goal 
 @EntityRepository(Event)
 export default class EventsRepository extends Repository<Event> implements Datasource<Event>, IPaginateBehavior<Event> {
     paginate(criteria: IQueryCriteria<Event>): Promise<IPaginatedResults<Event>> {
-        return PaginatorHelper.paginate(this, criteria);
+        return PaginationHelper.paginate(this, criteria);
     }
 }
 ``` 
 
-The `PaginatorHelper.paginate()` will take on the first argument a `DataSource<T>` ensuring the component is able to process criteria,
-the second arguement is actually the criteria to use.
+The `PaginationHelper.paginate(datasource, critera)` will take on the first argument a `DataSource<T>` ensuring the component is able to process criteria,
+the second argument is actually the `IQueryCriteria<T>` to use.
 
 
 And finally the results

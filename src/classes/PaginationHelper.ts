@@ -1,6 +1,6 @@
 import { Datasource, IPaginatedResults, IQueryCriteria } from '../interfaces';
 
-export class PaginatorHelper {
+export class PaginationHelper {
     public static async paginate<T>(
         dataSource: Datasource<T>,
         query: IQueryCriteria<T>): Promise<IPaginatedResults<T>> {
