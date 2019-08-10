@@ -17,6 +17,14 @@ npm install --save @implicity/nest-criteria
 ```
 
 ## Usage
+Expected format for the query param is `JSON` and different property will be looked for :
+```text
+    index: number; // The targeted page 
+    limit: number; // The maximum count of results per query
+    filter: FilterConditions<T>; // An Object filtering result containing specific properties
+    sort: { [P in keyof T]?:  1 | -1 }; // An Object sorting result by speicific properties
+    include: string[]; // The list of associated models to join to each results.
+```
 
 ### Initialisation
 
@@ -65,8 +73,9 @@ The `PaginationHelper.paginate(datasource, critera)` will take on the first argu
 the second argument is actually the `IQueryCriteria<T>` to use.
 
 
-And finally the results
+### And finally the results:
 
+When the route is paginated by default: `http://enpoint.local/events`
 ```json
 {
     "results": [
@@ -84,6 +93,44 @@ And finally the results
         }
     ],
     "total": 2,
+    "index": 0,
+    "limit": 10,
+    "previous": false,
+    "next": false
+}
+```
+
+With a pagination explicitly defined: `http://enpoint.local/events?criteria={"index": 1, "limit": 1}`
+```json
+{
+    "results": [
+        {
+            "id": 2,
+            "created_date": "2019-07-15T06:34:32.548Z",
+            "updated_date": "2019-07-15T06:34:32.548Z",
+            "name": "events.billing.invoice.generated"
+        }
+    ],
+    "total": 2,
+    "index": 1,
+    "limit": 1,
+    "previous": true,
+    "next": false
+}
+```
+
+When only criteria are set : `http://enpoint.local/events?criteria={"filter": {"name": "events.billing.invoice.generated"}}`
+```json
+{
+    "results": [
+        {
+            "id": 2,
+            "created_date": "2019-07-15T06:34:32.548Z",
+            "updated_date": "2019-07-15T06:34:32.548Z",
+            "name": "events.billing.invoice.generated"
+        }
+    ],
+    "total": 1,
     "index": 0,
     "limit": 10,
     "previous": false,
