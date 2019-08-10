@@ -20,6 +20,10 @@ npm install --save @implicity/nest-criteria
 
 ### Initialisation
 
+Just use it, no dependency injection needed, no module registration. Ready to go!
+
+### Quickstart demonstration
+
 Let's start with the controller.
 To get the value of the query parameter passed in the url, use the decorator `@Criteria()`
 
