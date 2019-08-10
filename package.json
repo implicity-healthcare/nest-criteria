@@ -15,7 +15,7 @@
     "coveralls": "yarn run coverage --coverageReporters=text-lcov | coveralls",
     "test:watch": "jest --watch",
     "build": "rm -rf ./lib && tsc",
-    "prepublish": "npm run build"
+    "prepare": "npm run build"
   },
   "files": [
     "lib",
@@ -31,7 +31,6 @@
     "rxjs": "6.5.2"
   },
   "devDependencies": {
-    "@types/amqplib": "0.5.12",
     "@types/consul": "0.23.33",
     "@types/jest": "24.0.14",
     "@types/lodash": "4.14.134",
