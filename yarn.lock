@@ -322,14 +322,6 @@
     consola "^2.3.0"
     node-fetch "^2.3.0"
 
-"@types/amqplib@0.5.12":
-  version "0.5.12"
-  resolved "https://registry.yarnpkg.com/@types/amqplib/-/amqplib-0.5.12.tgz#d804e8020a8aecb01503f6c9445ff92fb4311bd2"
-  integrity sha512-SZL0WpRqznwnMXvGUDrpI1hlss5MlCSbAsRQpdp/V1YmKGDglzxENucvUQlz3UYR+hT5IyhovGurfEGRwzzI4g==
-  dependencies:
-    "@types/bluebird" "*"
-    "@types/node" "*"
-
 "@types/babel__core@^7.1.0":
   version "7.1.2"
   resolved "https://registry.yarnpkg.com/@types/babel__core/-/babel__core-7.1.2.tgz#608c74f55928033fce18b99b213c16be4b3d114f"
@@ -362,11 +354,6 @@
   integrity sha512-CeBpmX1J8kWLcDEnI3Cl2Eo6RfbGvzUctA+CjZUhOKDFbLfcr7fc4usEqLNWetrlJd7RhAkyYe2czXop4fICpw==
   dependencies:
     "@babel/types" "^7.3.0"
-
-"@types/bluebird@*":
-  version "3.5.27"
-  resolved "https://registry.yarnpkg.com/@types/bluebird/-/bluebird-3.5.27.tgz#61eb4d75dc6bfbce51cf49ee9bbebe941b2cb5d0"
-  integrity sha512-6BmYWSBea18+tSjjSC3QIyV93ZKAeNWGM7R6aYt1ryTZXrlHF+QLV0G2yV0viEGVyRkyQsWfMoJ0k/YghBX5sQ==
 
 "@types/consul@0.23.33":
   version "0.23.33"
