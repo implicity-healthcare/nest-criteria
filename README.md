@@ -37,7 +37,7 @@ By default the decorator will look for the `criteria` query param, but you can o
     }    
 ```
 
-The returned type is a 'IPaginatedResults<T>' allowing you to ensure your service is returning a pagniated collection.
+The returned type is a ``IPaginatedResults<T>` allowing you to ensure your service is returning a pagniated collection.
 
 
 Then on the service layer, use the `IQueryCriteria<T>` to manipulate, if necessary, the criteria provided during the HTTP request interpretation.
