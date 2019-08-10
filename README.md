@@ -37,7 +37,7 @@ By default the decorator will look for the `criteria` query param, but you can o
     }    
 ```
 
-The returned type is a ``IPaginatedResults<T>` allowing you to ensure your service is returning a paginated collection.
+The returned type is a `IPaginatedResults<T>` allowing you to ensure your service is returning a paginated collection.
 
 
 Then on the **service layer**, use the `IQueryCriteria<T>` to manipulate, if necessary, the criteria provided during the HTTP request interpretation.
@@ -62,7 +62,7 @@ export default class EventsRepository extends Repository<Event> implements Datas
 ``` 
 
 The `PaginatorHelper.paginate()` will take on the first argument a `DataSource<T>` ensuring the component is able to process criteria,
-the second arguement is actually the criteria to use. W
+the second arguement is actually the criteria to use.
 
 
 And finally the results
