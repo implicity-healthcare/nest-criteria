@@ -119,7 +119,8 @@ With a pagination explicitly defined: `http://enpoint.local/events?criteria={"in
 }
 ```
 
-When only criteria are set : `http://enpoint.local/events?criteria={"filter": {"name": "events.billing.invoice.generated"}}`
+When only criteria are set :   
+`http://enpoint.local/events?criteria={"filter": {"name": "events.billing.invoice.generated"}}`
 ```json
 {
     "results": [
