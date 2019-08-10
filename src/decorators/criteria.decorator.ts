@@ -13,6 +13,8 @@ export const Criteria = createParamDecorator( async (target: string, req) => {
             const errors = await validate(instance);
             if (errors && errors.length)
                 throw new Error(errors.toString());
+
+            return instance;
         }
         return plainToClass(QueryCriteria, {});
     } catch (e) {

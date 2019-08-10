@@ -1,6 +1,7 @@
 import { ROUTE_ARGS_METADATA } from '@nestjs/common/constants';
 import { Criteria } from './criteria.decorator';
 import { BadRequestException } from '@nestjs/common';
+import { QueryCriteria } from '..';
 
 describe('@Criteria', () => {
     let metadata;
@@ -19,19 +20,25 @@ describe('@Criteria', () => {
     });
     describe('when the query contains a known property to identify a criteria', () => {
         describe('like "criteria"', () => {
-            it('should return a criteria object', async () => {
+            it('should return a QueryCriteria object', async () => {
                 const target = 'criteria';
-                const targetValue = JSON.stringify({ test: 'test' });
-                const resultValue = { test: 'test' };
+                const targetValue = JSON.stringify({ filter: { test: 'test' } });
+                const resultValue = new QueryCriteria(
+                    { test: 'test' },
+                    undefined,
+                    undefined,
+                    0,
+                    10,
+                );
                 const req = {
                     query: {
                         [target]: targetValue,
                     },
                 };
 
-                const result = factoryFunction(target, req);
+                const result = await factoryFunction(target, req);
                 await expect(result)
-                  .toStrictEqual(resultValue);
+                    .toStrictEqual(resultValue);
             });
         });
         describe('but the value of the query can not be parse', () => {
@@ -44,21 +51,29 @@ describe('@Criteria', () => {
                     },
                 };
 
-                await expect(() => factoryFunction(target, req))
-                  .toThrow(BadRequestException);
+                await expect(factoryFunction(target, req))
+                    .rejects
+                    .toThrow(BadRequestException);
             });
         });
     });
     describe('when the query not contains a known property to identify a criteria', () => {
         describe('like "unknownRandomProperty"', () => {
-            it('should return a empty object', async () => {
+            it('should return a default QueryCriteria', async () => {
                 const target = 'unknownRandomProperty';
-                const targetValue = {};
+                const targetValue = new QueryCriteria(
+                    undefined,
+                    undefined,
+                    undefined,
+                    0,
+                    10,
+                );
+
                 const req = {
                     query: {},
                 };
 
-                await expect(factoryFunction(target, req)).toStrictEqual(targetValue);
+                await expect(await factoryFunction(target, req)).toStrictEqual(targetValue);
             });
         });
     });
