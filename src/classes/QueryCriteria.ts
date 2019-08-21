@@ -24,6 +24,10 @@ export class QueryCriteria<T> implements IQueryCriteria<T> {
         const minLimit: number = 10;
         const maxLimit: number = 1000;
 
+        this.filter = filter;
+        this.sort = sort;
+        this.include = include;
+
         this.index = this.index || 1;
         this.limit = this.limit || minLimit;
 
