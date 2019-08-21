@@ -8,12 +8,18 @@ export enum Target {
  * Todo Annotate instance to ensure property are properly set via URL paramerters.
  */
 export class QueryCriteria<T> implements IQueryCriteria<T> {
+    public readonly filter?: FilterConditions<T>;
+    public readonly sort?: { [P in keyof T]?: 1 | -1 };
+    public readonly include?: string[];
+    public readonly index: number;
+    public readonly limit: number;
+
     constructor(
-        public filter: FilterConditions<T>,
-        public sort: { [P in keyof T]?: 1 | -1 },
-        public include: string[],
-        public index: number,
-        public limit: number,
+        filter?: FilterConditions<T>,
+        sort?: { [P in keyof T]?: 1 | -1 },
+        include?: string[],
+        index?: number,
+        limit?: number,
     ) {
         const minLimit: number = 10;
         const maxLimit: number = 1000;
