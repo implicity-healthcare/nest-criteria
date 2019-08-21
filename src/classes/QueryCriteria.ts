@@ -1,7 +1,7 @@
 import { FilterConditions, IQueryCriteria } from '../interfaces';
 
-export enum Targets {
-    TYPE_ORM = 'typeorm'
+export enum Target {
+    TypeORM = 'typeorm'
 }
 
 /**
@@ -38,7 +38,7 @@ export class QueryCriteria<T> implements IQueryCriteria<T> {
      * Gives the ability to switch depending on the targeted ORM
      * @param target the identifier token of the targeted ORM
      */
-    pagination(target?: string): any {
+    pagination(target?: Target): any {
         return {
             skip: this.index * this.limit,
             take: this.limit,
@@ -49,7 +49,7 @@ export class QueryCriteria<T> implements IQueryCriteria<T> {
      * Gives the ability to switch depending on the targeted ORM
      * @param target the identifier token of the targeted ORM
      */
-    search(target?: string): any {
+    search(target?: Target): any {
         return {
             relations: this.include,
             order: this.sort,

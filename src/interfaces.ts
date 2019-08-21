@@ -18,9 +18,9 @@ export declare type FilterConditions<T> = {
 };
 
 export interface IQueryCriteria<T> extends IPaginateOptions {
-    filter: FilterConditions<T>;
-    sort: { [P in keyof T]?:  1 | -1 };
-    include: string[];
+    filter?: FilterConditions<T>;
+    sort?: { [P in keyof T]?:  1 | -1 };
+    include?: string[];
 
     pagination(target?: string): any;
     search(target?: string): any;
