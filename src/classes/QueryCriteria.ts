@@ -49,10 +49,14 @@ export class QueryCriteria<T> implements IQueryCriteria<T> {
      * @param target the identifier token of the targeted ORM
      */
     pagination(target?: Target): any {
-        return {
-            skip: this.index * this.limit,
-            take: this.limit,
-        };
+        switch (target) {
+            case undefined:
+            case Target.TypeORM:
+                return {
+                    skip: this.index * this.limit,
+                    take: this.limit,
+                }
+        }
     }
 
     /**
@@ -60,10 +64,14 @@ export class QueryCriteria<T> implements IQueryCriteria<T> {
      * @param target the identifier token of the targeted ORM
      */
     search(target?: Target): any {
-        return {
-            relations: this.include,
-            order: this.sort,
-            where: this.filter
+        switch (target) {
+            case undefined:
+            case Target.TypeORM:
+                return {
+                    relations: this.include,
+                    order: this.sort,
+                    where: this.filter
+                }
         }
     }
 }
