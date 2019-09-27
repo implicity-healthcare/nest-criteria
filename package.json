@@ -39,7 +39,7 @@
     "jest": "^24.9.0",
     "prettier": "^1.18.2",
     "ts-jest": "24.1.0",
-    "typeorm": "^0.2.19,",
+    "typeorm": "^0.2.19",
     "typescript": "^3.6.3"
   },
   "jest": {
