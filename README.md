@@ -16,4 +16,4 @@ yarn @implicity/nest-criteria
 ```
 
 ## Documentation
-Documentation is on the [Wiki section](https://github.com/implicity-healthcare/nest-criteria/wiki)!
+Documentation is on the [wiki section](https://github.com/implicity-healthcare/nest-criteria/wiki).
