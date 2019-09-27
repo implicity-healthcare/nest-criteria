@@ -4,10 +4,10 @@
 
 NestCriteria is a Toolbox helping to maintain lazy relation between controllers/service/repository layers.
 
-# Installation
+## Installation
 ```
 yarn @implicity/nest-criteria
 ```
 
-# Documentation
+## Documentation
 Documentation is on the [Wiki section](https://github.com/implicity-healthcare/nest-criteria/wiki)!
