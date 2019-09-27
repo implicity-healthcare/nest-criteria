@@ -1,4 +1,5 @@
 import { FilterConditions, IQueryCriteria } from '../interfaces';
+import { parseFilters } from '../utils/parse-filters';
 
 export enum Target {
     TypeORM = 'typeorm'
@@ -70,7 +71,7 @@ export class QueryCriteria<T> implements IQueryCriteria<T> {
                 return {
                     relations: this.include,
                     order: this.sort,
-                    where: this.filter
+                    where: parseFilters(this.filter)
                 }
         }
     }
