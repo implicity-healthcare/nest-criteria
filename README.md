@@ -18,12 +18,14 @@ npm install --save @implicity/nest-criteria
 
 ## Usage
 Expected format for the query param is `JSON` and different property will be looked for :
-```text
+```typescript
+{
     index: number; // The targeted page 
     limit: number; // The maximum count of results per query
     filter: FilterConditions<T>; // An Object filtering result containing specific properties
     sort: { [P in keyof T]?:  1 | -1 }; // An Object sorting result by specific properties
     include: string[]; // The list of associated models to join to each results.
+}
 ```
 
 ## Initialisation
