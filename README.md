@@ -87,7 +87,7 @@ To have a full usage overview, check the tests cases.
 The `between()` operator is a special one since you need to pass **exactly** two arguments.
   
 `http://enpoint.local/people?criteria={"filter": {"age": {$bt: [50, 100]}}}`
-```typescript
+```json
 [
     {
         "id": 3,
@@ -99,77 +99,34 @@ The `between()` operator is a special one since you need to pass **exactly** two
 ]
 ``` 
 
-
-
-
-
-
-
-
-
-
-
-Let's start with the **controller**.
-To get the value of the query parameter passed in the url, use the decorator `@Criteria()`
-
-By default the decorator will look for the `criteria` query param, but you can override this behavior by passing the targeted key in argument.
-
-```typescript
-    @Get()
-    public async paginate(@Criteria('other') criteria): Promise<IPaginatedResults<IEvent>> {
-        return this.eventsService
-          .paginate(criteria);
-    }    
-```
-
-The returned type is a `IPaginatedResults<T>` allowing you to ensure your service is returning a paginated collection.
-
-
-Then on the **service layer**, use the `IQueryCriteria<T>` to manipulate, if necessary, the criteria provided during the HTTP request interpretation.
-
-
-```typescript
-    public async paginate(criteria: IQueryCriteria<Event>): Promise<IPaginatedResults<IEvent>> {
-        return await this.eventsRepository
-            .paginate(criteria);
-    }
-```
-
-Last but not least, the **repository layer**. Here we used TypeORM but the goal of this helper is to be ORM agnostic
-
-```typescript
-@EntityRepository(Event)
-export default class EventsRepository extends Repository<Event> implements Datasource<Event>, IPaginateBehavior<Event> {
-    paginate(criteria: IQueryCriteria<Event>): Promise<IPaginatedResults<Event>> {
-        return PaginationHelper.paginate(this, criteria);
-    }
-}
-``` 
-
-The `PaginationHelper.paginate(datasource, critera)` will take on the first argument a `DataSource<T>` ensuring the component is able to process criteria,
-the second argument is actually the `IQueryCriteria<T>` to use.
-
-
-### And finally the results:
-
-When the route is paginated by default: `http://enpoint.local/events`
+### Pagination 
+When the route is paginated by default: `http://enpoint.local/people`
 ```json
 {
     "results": [
         {
             "id": 1,
-            "created_date": "2019-07-15T06:34:04.568Z",
-            "updated_date": "2019-07-15T06:34:04.568Z",
-            "name": "events.document.report.approved"
+            "age": 142,
+            "created_date": "2019-07-15T06:34:32.548Z",
+            "updated_date": "2019-07-15T06:34:32.548Z",
+            "name": "Camus"       
         },
         {
             "id": 2,
+            "age": 42,
             "created_date": "2019-07-15T06:34:32.548Z",
             "updated_date": "2019-07-15T06:34:32.548Z",
-            "name": "events.billing.invoice.generated"
+            "name": "Einstein"       
+        },
+        {
+            "id": 3,
+            "age": 72,
+            "created_date": "2019-07-15T06:34:32.548Z",
+            "updated_date": "2019-07-15T06:34:32.548Z",
+            "name": "De Monaco"       
         }
     ],
-    "total": 2,
+    "total": 3,
     "index": 0,
     "limit": 10,
     "previous": false,
@@ -183,16 +140,78 @@ With a pagination explicitly defined: `http://enpoint.local/events?criteria={"in
     "results": [
         {
             "id": 2,
+            "age": 42,
             "created_date": "2019-07-15T06:34:32.548Z",
             "updated_date": "2019-07-15T06:34:32.548Z",
-            "name": "events.billing.invoice.generated"
+            "name": "Einstein"       
         }
     ],
-    "total": 2,
+    "total": 3,
     "index": 1,
     "limit": 1,
     "previous": true,
-    "next": false
+    "next": true
 }
 ```
 
+## Usage 
+
+### Filtering 
+Let's start with the **controller**.
+To get the value of the query parameter passed in the url, use the decorator `@Criteria()`
+
+By default the decorator will look for the `criteria` query param, but you can override this behavior by passing the targeted key in argument.
+
+```typescript
+    @Get()
+    public async list(@Criteria('other') criteria): Promise<IPaginatedResults<Person>> {
+        return this.personService
+          .list(criteria);
+    }    
+```
+
+
+Then on the **service layer**, use the `.seach() method to convert the received criteria into the proper query.`.
+
+
+```typescript
+    public async list(criteria: IQueryCriteria<Person>): Promise<Person[]> {
+        return await this.personRepository
+            .find(criteria.search());
+    }
+```
+
+### Pagination 
+Again, let's start with the **controller**.
+
+```typescript
+    @Get()
+    public async paginate(@Criteria() criteria): Promise<IPaginatedResults<Person>> {
+        return this.personService
+          .paginate(criteria);
+    }    
+```
+
+The returned type is a `IPaginatedResults<T>` allowing you to ensure your service is returning a paginated collection.  
+
+Then on the **service layer**, use the `IQueryCriteria<T>` to manipulate, if necessary, the criteria provided during the HTTP request interpretation.
+```typescript
+    public async paginate(criteria: IQueryCriteria<Person>): Promise<IPaginatedResults<Person>> {
+        return await this.personRepository
+            .paginate(criteria);
+    }
+```
+
+Last but not least, the **repository layer**. Here we used TypeORM but the goal of this helper is to be ORM agnostic
+
+```typescript
+@EntityRepository(Person)
+export default class PersonRepository extends Repository<Person> implements Datasource<Person>, IPaginateBehavior<Person> {
+    paginate(criteria: IQueryCriteria<Person>): Promise<IPaginatedResults<Person>> {
+        return PaginationHelper.paginate(this, criteria);
+    }
+}
+``` 
+
+The `PaginationHelper.paginate(datasource, critera)` will take on the first argument a `DataSource<T>` ensuring the component is able to process criteria,
+the second argument is actually the `IQueryCriteria<T>` to use.
