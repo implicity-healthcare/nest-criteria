@@ -16,7 +16,11 @@ or
 npm install --save @implicity/nest-criteria
 ```
 
-## Usage
+## Initialisation
+
+Just use it, no dependency injection needed, no module registration. Ready to go!
+
+## Quickstart demonstration
 Expected format for the query param is `JSON` and different property will be looked for :
 ```typescript
 {
@@ -27,12 +31,6 @@ Expected format for the query param is `JSON` and different property will be loo
     include: string[]; // The list of associated models to join to each results.
 }
 ```
-
-## Initialisation
-
-Just use it, no dependency injection needed, no module registration. Ready to go!
-
-## Quickstart demonstration
 
 ### Filtering   
 `http://enpoint.local/people?criteria={"filter": {"name": "Einstein"}}`
