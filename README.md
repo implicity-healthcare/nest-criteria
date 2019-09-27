@@ -171,7 +171,7 @@ By default the decorator will look for the `criteria` query param, but you can o
 ```
 
 
-Then on the **service layer**, use the `.seach() method to convert the received criteria into the proper query.`.
+Then on the **service layer**, use the `.seach()` method to convert the received criteria into the proper query.`.
 
 
 ```typescript
