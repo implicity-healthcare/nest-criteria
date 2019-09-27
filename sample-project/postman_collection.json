@@ -1,0 +1,86 @@
+{
+	"info": {
+		"_postman_id": "6b4c7ec2-fd2f-45c2-abcf-634d8c44afa1",
+		"name": "QueryCriteria",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Person",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Einstein\",\n\t\"age\": 140,\n\t\"hobbies\": [\"science\", \"physics\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000",
+					"host": [
+						"localhost"
+					],
+					"port": "3000"
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Paginated List Person",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/all?criteria={\"filter\": {\"name\": {\"$not\": { \"$in\": [\"Camus\", \"Dupontel\"]}}}}",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"all"
+					],
+					"query": [
+						{
+							"key": "criteria",
+							"value": "{\"filter\": {\"name\": {\"$not\": { \"$in\": [\"Camus\", \"Dupontel\"]}}}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All Persons",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000?criteria={\"limit\": 1, \"index\": 1}",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"query": [
+						{
+							"key": "criteria",
+							"value": "{\"limit\": 1, \"index\": 1}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

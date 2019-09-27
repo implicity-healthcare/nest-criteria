@@ -25,6 +25,7 @@
   "exclude": [
     "./index.ts",
     "./index.d.ts",
+    "sample-project",
     "node_modules",
     "./**/*.spec.ts",
     "examples",

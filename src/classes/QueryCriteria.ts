@@ -71,7 +71,9 @@ export class QueryCriteria<T> implements IQueryCriteria<T> {
                 return {
                     relations: this.include,
                     order: this.sort,
-                    where: parseFilters(this.filter)
+                    where: this.filter
+                        ? parseFilters(this.filter)
+                        : {}
                 }
         }
     }
