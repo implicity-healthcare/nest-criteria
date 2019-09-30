@@ -23,18 +23,12 @@ export const parseFilters = (filter: any): any => {
                     query = operatorMapper[key](parseFilters(filter[key]));
                 else
                     query[key] = parseFilters(filter[key]);
-            }
-            else if (operatorMapper[key]) {
-                if (key === '$bt') {
-                    query = operatorMapper[key].apply(null, filter[key]);
-                }
-                else {
-                    query = operatorMapper[key](filter[key]);
-                }
-            }
-            else {
+            } else if (operatorMapper[key])
+                query = (key === '$bt')
+                    ? operatorMapper[key].apply(null, filter[key])
+                    : operatorMapper[key](filter[key]);
+            else
                 query[key] = filter[key];
-            }
 
             return query;
         }, {})
