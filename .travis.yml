@@ -1,7 +1,7 @@
 language: node_js
 env:
   global:
-    - CC_TEST_REPORTER_ID=61ffb7c6689c41a642eabd105ba797cec7a82a81bd80e6593d810c60d06844d9
+    - CC_TEST_REPORTER_ID=f36ce06357cd9af13a2e094c5978e79f5e93d9670d5d43c2389b2d29b68e7efc
 node_js:
   - stable
 install:
