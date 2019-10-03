@@ -28,7 +28,7 @@ export declare type FindOperator = {
     $eq: any
     $null: Boolean
     $not: any
-    $bt: [Number, Number]
+    $bt: [any, any]
 };
 
 export interface IPaginateOptions {
