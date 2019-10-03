@@ -57,24 +57,14 @@ describe('@Criteria', () => {
             });
         });
     });
-    describe('when the query not contains a known property to identify a criteria', () => {
-        describe('like "unknownRandomProperty"', () => {
-            it('should return a default QueryCriteria', async () => {
-                const target = 'unknownRandomProperty';
-                const targetValue = new QueryCriteria(
-                    undefined,
-                    undefined,
-                    undefined,
-                    0,
-                    10,
-                );
+    describe('when the query not contains a criteria', () => {
+        it('should return undefined', async () => {
+            const target = 'unknownRandomProperty';
+            const req = {
+                query: {},
+            };
 
-                const req = {
-                    query: {},
-                };
-
-                await expect(await factoryFunction(target, req)).toStrictEqual(targetValue);
-            });
+            await expect(await factoryFunction(target, req)).toStrictEqual(undefined);
         });
     });
 });
