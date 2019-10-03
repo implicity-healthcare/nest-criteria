@@ -16,7 +16,6 @@
   "scripts": {
     "test": "jest",
     "coverage": "jest --coverage",
-    "coveralls": "yarn run coverage --coverageReporters=text-lcov | coveralls",
     "test:watch": "jest --watch",
     "build": "rm -rf ./lib && tsc",
     "prepare": "npm run build"
@@ -39,7 +38,6 @@
     "@types/consul": "^0.23.33",
     "@types/jest": "^24.0.18",
     "@types/lodash": "^4.14.139",
-    "coveralls": "^3.0.6",
     "jest": "^24.9.0",
     "prettier": "^1.18.2",
     "ts-jest": "24.1.0",
