@@ -13,9 +13,9 @@ before_script:
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
 script:
-  - npm test
+  - npm test:cov
 after_script:
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+  - ./cc-test-reporter after-build lcov --exit-code $TRAVIS_TEST_RESULT
 deploy:
   skip_cleanup: true
   provider: npm
