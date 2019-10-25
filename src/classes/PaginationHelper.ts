@@ -1,13 +1,17 @@
 import { Datasource, IPaginatedResults, IQueryCriteria } from '../interfaces';
+import { QueryCriteria, Target } from './QueryCriteria';
 
 export class PaginationHelper {
     public static async paginate<T>(
         dataSource: Datasource<T>,
-        query: IQueryCriteria<T>): Promise<IPaginatedResults<T>> {
+        query?: IQueryCriteria<T>,
+        target?: Target): Promise<IPaginatedResults<T>> {
+
+        query = query || new QueryCriteria();
 
         const [results, total] = await dataSource.findAndCount({
-            ...query.pagination(),
-            ...query.search(),
+            ...query.pagination(target),
+            ...query.search(target),
         });
 
         return {
